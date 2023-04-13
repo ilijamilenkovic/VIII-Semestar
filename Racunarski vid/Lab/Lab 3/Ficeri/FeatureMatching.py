@@ -10,11 +10,14 @@ def bfMatcherSift():
     img2 = cv.imread('box_in_scene.png', 0)  # trainImage
     
     # Initiate SIFT detector
-    detector = cv.SIFT_create()
+    detector = cv.SIFT_create() 
     
     # find the keypoints and descriptors with SIFT
-    kp1, des1 = detector.detectAndCompute(img1, None)
-    kp2, des2 = detector.detectAndCompute(img2, None)
+    #kp su kljucne tacke i to je struktura koja sadrzi koordinate, vrednost piksela i jos neke stvari za tacku
+    #des je deskriptor i to je 128bit podatak koji opisuje kljucnu tacku. Ako se nadju 2 ista deskriptora
+    #znaci da su pronadjene 2 iste kljucne tacke(npr u 2 razlicite slike)
+    kp1, des1 = detector.detectAndCompute(img1, None)#Uzimamo kljucne tacke i deskriptore za prvu sliku
+    kp2, des2 = detector.detectAndCompute(img2, None)#Uzimamo kljucne tacke i deskriptore za drugu sliku
 
     # BFMatcher with default params
     bf = cv.BFMatcher()
