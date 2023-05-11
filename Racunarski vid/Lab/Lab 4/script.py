@@ -1,6 +1,5 @@
 import cv2 as cv
 import numpy as np
-import time
 import imutils
 
 def pyramid(image, scale=2, minSize=(30, 30)):
@@ -36,11 +35,6 @@ def prepoznaj(blob, net):
      
             
 
-    
-       
-
-
-
 
 if __name__ == '__main__':
     # load the input image
@@ -49,9 +43,6 @@ if __name__ == '__main__':
     #Crop loaded image
     image = image[296:1016,365:1805]
 
-
-    #for y = 0, y < 
-    #
 
     #velicina prozora za sliding window
     (winW, winH) = (180, 180)
@@ -70,13 +61,12 @@ if __name__ == '__main__':
             winWScaled = winW
             winHScaled = winH
             if(confidence > 70):
-                for s in range(0,i):
+                for _ in range(0,i):
                     x = int(x * scale)
                     y = int(y * scale)
                     winWScaled = int(winWScaled * scale)
                     winHScaled = int(winHScaled * scale)
-                #print(winWScaled, winHScaled)
-                clone = image.copy()
+                
                 if text == "Maltese dog":
                     cv.rectangle(image, (x, y), (x + winWScaled, y + winHScaled), (0, 0, 255), 2)
                     text = "DOG"
@@ -85,18 +75,9 @@ if __name__ == '__main__':
                     text = "CAT"
                 
                 cv.putText(image, text, (x+5, y+25),  cv.FONT_HERSHEY_SIMPLEX,0.7, (0, 0, 255), 2)
-                #cv.imshow("Window2", clone)
-                #cv.waitKey(0)
+                
         i = i + 1
-        #print("i je " + str(i))
-        
-		   
-
-           
-        
        
-    
-    
     # display the output image
     cv.imshow("Image", image)
     cv.waitKey(0)
